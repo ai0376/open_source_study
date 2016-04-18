@@ -43,7 +43,7 @@ libevent在上层提供一个定期事件回调的抽象，这个抽象被称作
 libevent 可以创建定时器来唤醒一个已经经过一定时间已经过期的回调（callback）.`evtime_new()`函数返回一个事件结构作为一个定时器.调用`evtime_add()`来激活一个定时器.定时器通过调用`evtimer_del()`停用定时器.
 
 ## 异步DNS解析
-libevent剔红一个一个异步DNS解析器，它可以取代标准的DNS解析器功能。
+libevent剔红一个异步DNS解析器，它可以取代标准的DNS解析器功能。
 
 更详细的查看`<event2/dns.h>`
 

@@ -33,6 +33,49 @@ libevent已经被广泛的应用，作为底层网络库；比如Memcached, Vomi
 ## I/O缓冲区
 libevent在上层提供一个定期事件回调的抽象，这个抽象被称作缓冲事件．一个缓冲事件提供输入和输出缓冲区，能够自动的填充和取出．一个使用的缓冲事件用户不再直接的进行I/O操作，而是通过从输入缓冲区中读取，写入到输出缓冲区．
 
-一旦初始化通过`bufferevent_new()`,`bufferevent`结构的`bufferevent_enable()`和`bufferevent_disable()`会被反复使用．通过调用`bufferevent_read()`和`bufferevent_write()`而取代直接的读写socket.
+一旦初始化通过`bufferevent_socket_new()`,bufferevent结构的`bufferevent_enable()`和`bufferevent_disable()`会被反复使用．通过调用`bufferevent_read()`和`bufferevent_write()`而取代直接的读写socket.
 
 当被允许读时，bufferevent将试图读取文件描述符和调用读的回调函数．写回调被执行时，输出缓冲区写到临界时，将默认返回0.
+
+查看`<event2/bufferevent*.h>`获得更多的信息
+
+## 定时器
+libevent 可以创建定时器来唤醒一个已经经过一定时间已经过期的回调（callback）.`evtime_new()`函数返回一个事件结构作为一个定时器.调用`evtime_add()`来激活一个定时器.定时器通过调用`evtimer_del()`停用定时器.
+
+## 异步DNS解析
+libevent剔红一个一个异步DNS解析器，它可以取代标准的DNS解析器功能。
+
+更详细的查看`<event2/dns.h>`
+
+## 事件驱动的HTTP服务器
+libevent提供一个非常简单的事件驱动HTTP服务，可以嵌入你的程序用来提供HTTP服务请求.
+
+使用这些特性，你需要包含`<event2/http.h>`头文件.查看这个头文件了解更多的信息。
+
+## 一个RPC服务端和客户端框架
+libevent 提供一个框架来创建服务端和客户端.它负责封装和拆解所有的数据结构。
+
+## API 接口
+
+可以点击下面的链接，浏览完整的libevebt API文档
+[event2/event.h][API01] libevent 的主要头文件
+[event2/thread.h][API02]多线程程序使用的函数
+[event2/buffer.h][API03]和[event2/bufferevent.h][API04]缓冲区管理和网络读写
+[event2/util.h][API05]实用的功能的无阻塞网络代码
+[event2/dns.h][API06]异步DNS解析
+[event2/http.h][API07]一个基于libevent的嵌入HTTP 服务器
+[event2/rpc.h][API08]一个创建RPC服务端和客户端的框架
+
+[API01]:http://www.wangafu.net/~nickm/libevent-2.0/doxygen/html/event_8h.html
+[API02]:http://www.wangafu.net/~nickm/libevent-2.0/doxygen/html/thread_8h.html
+[API03]:http://www.wangafu.net/~nickm/libevent-2.0/doxygen/html/buffer_8h.html
+[API04]:http://www.wangafu.net/~nickm/libevent-2.0/doxygen/html/bufferevent_8h.html
+[API05]:http://www.wangafu.net/~nickm/libevent-2.0/doxygen/html/util_8h.html
+[API06]:http://www.wangafu.net/~nickm/libevent-2.0/doxygen/html/dns_8h.html
+[API07]:http://www.wangafu.net/~nickm/libevent-2.0/doxygen/html/http_8h.html
+[API08]:http://www.wangafu.net/~nickm/libevent-2.0/doxygen/html/rpc_8h.html
+
+___
+*[部分原文链接地址](http://www.wangafu.net/~nickm/libevent-2.0/doxygen/html/index.html)*如有描述翻译问题，欢迎纠正，并pull request或邮件mjrao@foxmail.com
+
+

@@ -58,12 +58,19 @@ libevent 提供一个框架来创建服务端和客户端.它负责封装和拆�
 ## API 接口
 
 可以点击下面的链接，浏览完整的libevebt API文档
+
 [event2/event.h][API01] libevent 的主要头文件
+
 [event2/thread.h][API02]多线程程序使用的函数
+
 [event2/buffer.h][API03]和[event2/bufferevent.h][API04]缓冲区管理和网络读写
+
 [event2/util.h][API05]实用的功能的无阻塞网络代码
+
 [event2/dns.h][API06]异步DNS解析
+
 [event2/http.h][API07]一个基于libevent的嵌入HTTP 服务器
+
 [event2/rpc.h][API08]一个创建RPC服务端和客户端的框架
 
 [API01]:http://www.wangafu.net/~nickm/libevent-2.0/doxygen/html/event_8h.html

@@ -66,4 +66,4 @@ protected:
 };
 ```
 ___
-*[原文文档](http://research.edm.uhasselt.be/jori/jthread/manual.pdf)，翻译出入的地方，欢迎提交pull request或　mjrao@foxmail.com　联系我！
+*[原文文档](http://research.edm.uhasselt.be/jori/jthread/manual.pdf)，翻译出入的地方，欢迎提交pull request或　mjrao@foxmail.com　联系我！*

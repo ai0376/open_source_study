@@ -45,7 +45,7 @@ void MyClass::MyFunction()
 ### JThread
 为了创建你自己的线程，你不得不从JThread继承一个类，下面是描述．在你的继承类里，你必须实现一个`Thread`成员函数，这将要在新的线程里执行．在你的自己的线程实线中应当调用`ThreadStarted`.
 
-为了启动你的线程，你只要简单的调用`Start`函数．你需要在你自己的`Thread`函数中调用`ThreadStarted`．这样，当你的`Start`函数完成滞后，你才能确保你的Thread能真正的立即运行起来．
+为了启动你的线程，你只要简单的调用`Start`函数．你需要在你自己的`Thread`函数中调用`ThreadStarted`．这样，当你的`Start`函数完成之后，你才能确保你的Thread能真正的立即运行起来．
 
 你可以通过调用`IsRunning`函数来检测你的线程是否正在运行．如果线程已经完成，通过调用`GetReturnValue`检测到返回值，最后通过`Kill`函数结束它．
 

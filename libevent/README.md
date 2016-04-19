@@ -1,4 +1,6 @@
-#　libevent 2.0
+#　[libevent 2.0][code]
+[code]:http://libevent.org
+
 ## 介绍
 libevent是一个用于开发可扩展性网络服务器的基于事件驱动模型的网络库．
 libevent具有几个显著亮点：

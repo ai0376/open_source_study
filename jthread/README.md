@@ -40,7 +40,7 @@ void MyClass::MyFunction()
     // 在这做互斥保护
 }
 ```
-当autolock变量被创建时，它自动锁定结构体中指定的互斥体m_myMutex．autoLock变量的析构函数确保lock被释放.
+当autoLock变量被创建时，它自动锁定互斥体m_myMutex在构造函数中．autoLock变量的析构函数确保lock被释放.
 
 ### JThread
 为了创建你自己的线程，你不得不从JThread继承一个类，下面是描述．在你的继承类里，你必须实现一个`Thread`成员函数，这将要在新的线程里执行．在你的自己的线程实线中应当调用`ThreadStarted`.

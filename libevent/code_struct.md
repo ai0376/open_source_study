@@ -27,5 +27,8 @@ log.c : log日志实现
 
 buffer*.c ： 对缓冲区封装
 
-____
-[link](http://www.cnblogs.com/hustcat/archive/2010/08/31/1814022.html)
+http和evdns 是基于libevent实现的http服务器和异步dns查询库.
+
+___
+
+[Home](../README.md)

@@ -1,5 +1,4 @@
-# [JThread][code]
-[code]:https://github.com/mjrao/JThread
+# JThread
 ## 介绍
 在许多项目中，我们会经常使用到线程．为了在unix和windows平台下使用一样的代码，我决定在这些平台上将已经存在的线程函数封装成一个简单的类．
 

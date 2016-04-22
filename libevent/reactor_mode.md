@@ -21,6 +21,60 @@ Reactor Bing 中文翻译为 "反应堆，反应器"，是一种事件驱动机�
 
 ![Reactor模型整体框架](http://7xoqng.com1.z0.glb.clouddn.com/20160421.png "Reactor模型整体框架")
 
+在上图中，可以看到Rector管理器（dispatcher）是Reactor模式中最为关键的角色，它是该模式最终向用户提供接口的类。用户可以向Reactor中注册event handler，然后Reactor在react的时候，发现用户注册的fd有事件发生，就会调用用户的事件处理函数。下面是一个典型的reactor声明方式：
+```
+class Reactor
+{
+public:
+	//构造函数
+	Reactor();
+    //析构函数
+    ~Reactor();
+    //向reactor中注册关注事件evt的handler（可重入）
+    //@param handler 要注册的事件处理器
+    //@param evt 要关注的事件
+    //@retval 0 注册成功
+    //@retval -1 注册出错
+    int RegisterHandler(EventHandler *handler, event_t evt);
+
+    //从reactor中移除handler
+    //param handler 要移除的事件处理器
+    //retval 0 移除成功
+    //retval -1 移除出错
+    int RemoveHandler(EventHandler *handler);
+
+    //处理事件，回调注册的handler中相应的事件处理函数
+    //@param timeout 超时事件（毫秒）
+    void HandlerEvents(int timeout = 0);
+
+private：
+	ReactorImplementation *m_reactor_impl; //reactor的实现类
+}
+```
+SynchrousEventDemultiplexer也是Reactor中一个比较重要的角色，它是Reactor用来检测用户注册的fd上发生的事件的利器，通过Reactor得知了那些fd上发生了什么样的事件，然后以这些为依据，来多路分发事件，回调用户事件处理函数。下面是一个简单的设计：
+```
+class EventDemultiplexer
+{
+public:
+    /// 获取有事件发生的所有句柄以及所发生的事件
+    /// @param  events  获取的事件
+    /// @param  timeout 超时时间
+    /// @retval 0       没有发生事件的句柄(超时)
+    /// @retval 大于0   发生事件的句柄个数
+    /// @retval 小于0   发生错误
+    virtual int WaitEvents(std::map<handle_t , event_t> * events, int timeout = 0) = 0;
+    /// 设置句柄handle关注evt事件
+    /// @retval 0     设置成功
+    /// @retval 小于0 设置出错
+    virtual int RequestEvent(handle_t handle, event_t evt) = 0;
+
+    /// 撤销句柄handle对事件evt的关注
+    /// @retval 0     撤销成功
+    /// @retval 小于0 撤销出错
+    virtual int UnrequestEvent(handle_t handle, event_t evt) = 0;
+};
+```
+
 ## Reactor模式的优点
 Reactor模式是编写高性能网络服务器的必备技术之一，它具有如下优点：
 * 响应快，不必为单个同步时间所阻塞，虽然Reactor本身依然是同步的

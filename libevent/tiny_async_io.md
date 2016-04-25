@@ -234,7 +234,7 @@ int main(int c, char **v)
 
 文件描述符fd就是socket函数创建的。一旦你设置了socket 描述符fd为非阻塞，当你让网络去调用fd，调用操作将立即完成或者返回一个错误标明"我不能现在无法取得任何进展，请重试"。所以我们两个socket例子可以写成这样：
 
-*坏例子：忙轮询所有套接字*
+**坏例子：忙轮询所有套接字**
 ```
 /* This will work, but the performance will be unforgivably bad. */
 int i, n;
@@ -263,6 +263,7 @@ while (i_still_want_to_read()) {
 旧的解决方案是人们一直使用`select()`函数解决这个问题.`select()`函数调用三套fds(以位数组方式实现)：一个读，一个写，另一个异常处理。它等待，直到一个套接字从其中一个集合准备好，并且设置了集合包含准备使用的套接字。
 
 这我们还有一个例子，使用select实现：
+
 **例子：使用select**
 ```
 /* If you only have a couple dozen fds, this version won't be awful */
@@ -302,6 +303,7 @@ while (i_still_want_to_read()) {
 }
 ```
 这有一个用select实现的POT13 服务端
+
 **例子：select（）实现的POT13服务器**
 ```
 /* For sockaddr_in */

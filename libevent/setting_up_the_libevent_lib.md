@@ -67,6 +67,7 @@ void set_logfile(FILE *f)
 }
 ```
 **注意**
+
 在用户提供`event_log_cb`回调函数中调用libevent函数是不安全的！例如，你试图编写一个使用bufferevent将警告信息发送给某个套接字的日志回调函数，可能会遇到难以诊断的bug。未来的libevent版中的某些函数可能会移除这个限制。
 ____
 待续
